@@ -4,13 +4,13 @@
 class Cube {
     constructor() {
         this.color;
-        this.team=false;
     }
 
     render() {
         this.element = document.createElement("div");
         this.element.innerHTML = "";
         this.element.className = `cube`;
+        this.team=true;
         this.color=Math.round(Math.random() * (5)+1);
     }
 

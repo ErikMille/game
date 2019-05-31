@@ -11,26 +11,29 @@ document.addEventListener("DOMContentLoaded", () => {
     button_aqua=document.querySelector("#aqua");
     button_green=document.querySelector("#green");
     button_pink=document.querySelector("#pink");
+    button_reset=document.querySelector("#reset");
 
     button_red.addEventListener("click", () => {
-        deck.change_color(1);
+        deck.change_color_btn(1,0,0);
     });
     button_blue.addEventListener("click", () => {
-        deck.change_color(2);
+        deck.change_color_btn(2,0,0);
     });
     button_yellow.addEventListener("click", () => {
-        deck.change_color(3);
+        deck.change_color_btn(3,0,0);
     });
     button_aqua.addEventListener("click", () => {
-        deck.change_color(4);
+        deck.change_color_btn(4,0,0);
     });
     button_green.addEventListener("click", () => {
-        deck.change_color(5);
+        deck.change_color_btn(5,0,0);
     });
     button_pink.addEventListener("click", () => {
-        deck.change_color(6);
+        deck.change_color_btn(6,0,0);
     });
-
+    button_reset.addEventListener("click", () => {
+        deck.mount(place);
+    });
 
 
 

@@ -1,13 +1,21 @@
 *{box-sizing: border-box;}
 $cube-size: 20px;
 
-body{}
+body{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  height: 100vh;
+}
 button{
-  width: 30px;
-  height: 30px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
 }
-
+.btns{
+    max-width: 160px;
+}
 .box{
   display: flex;
   flex-direction: row;

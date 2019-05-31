@@ -24,10 +24,10 @@ class Deck {
                 this.cubes[i].push(new Cube());
             }
         }
-        this.cubes[0][0].team=true;
     }
 
     mount(parent) {
+        parent.innerHTML='';
         this.render();
         parent.appendChild(this.element);
         for (let i=0;i<14;i++){
@@ -40,43 +40,35 @@ class Deck {
     }
 
     update(){
+        let win=true;
         for (let i=0;i<14;i++){
             for (let j=0;j<14;j++){
                 this.cubes[i][j].update();
+                if(this.cubes[i][j].color===this.cubes[0][0].color){win=false}
             }
         }
+        if(win){alert('WIN!!')}
     }
-    change_color(col){
+    change_color_btn(col,i,j){
         for (let i=0;i<14;i++){
             for (let j=0;j<14;j++){
-                if(this.cubes[i][j].team){this.cubes[i][j].color=col;}
-                
+                this.cubes[i][j].team=true;
             }
         }
-        this.team_change();
+        this.change_color(col,i,j);
+        
+        
+    }
+    change_color(col,i,j){
+        
+        this.cubes[i][j].team=false;
+            if ((i>0)&&(this.cubes[i-1][j].color===this.cubes[i][j].color)){if(this.cubes[i-1][j].team===true){this.change_color(col,i-1,j);}}
+            if ((i<13)&&(this.cubes[i+1][j].color===this.cubes[i][j].color)){if(this.cubes[i+1][j].team===true){this.change_color(col,i+1,j);}}
+            if ((j>0)&&(this.cubes[i][j-1].color===this.cubes[i][j].color)){if(this.cubes[i][j-1].team===true){this.change_color(col,i,j-1);}}
+            if ((j<13)&&(this.cubes[i][j+1].color===this.cubes[i][j].color)){if(this.cubes[i][j+1].team===true){this.change_color(col,i,j+1);}}
+            
+        this.cubes[i][j].color=col;
         this.update();
-    }
-    team_change(){
-        for (let i=0;i<14;i++){
-            for (let j=0;j<14;j++){
-                if(this.cubes[i][j].team){
-                    if ((i>0)&&(this.cubes[i-1][j].color===this.cubes[i][j].color)){this.cubes[i-1][j].team=true;}
-                    if ((i<13)&&(this.cubes[i+1][j].color===this.cubes[i][j].color)){this.cubes[i+1][j].team=true;}
-                    if ((j>0)&&(this.cubes[i][j-1].color===this.cubes[i][j].color)){this.cubes[i][j-1].team=true;}
-                    if ((j<13)&&(this.cubes[i][j+1].color===this.cubes[i][j].color)){this.cubes[i][j+1].team=true;}
-                }
-            }
-        }
-        for (let i=13;i>=0;i--){
-            for (let j=13;j>=0;j--){
-                if(this.cubes[i][j].team){
-                    if ((i>0)&&(this.cubes[i-1][j].color===this.cubes[i][j].color)){this.cubes[i-1][j].team=true;}
-                    if ((i<13)&&(this.cubes[i+1][j].color===this.cubes[i][j].color)){this.cubes[i+1][j].team=true;}
-                    if ((j>0)&&(this.cubes[i][j-1].color===this.cubes[i][j].color)){this.cubes[i][j-1].team=true;}
-                    if ((j<13)&&(this.cubes[i][j+1].color===this.cubes[i][j].color)){this.cubes[i][j+1].team=true;}
-                }
-            }
-        }
     }
 
 }
